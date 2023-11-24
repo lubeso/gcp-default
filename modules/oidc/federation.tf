@@ -15,4 +15,7 @@ resource "google_iam_workload_identity_pool_provider" "default" {
   disabled            = var.workload_identity_pool_provider.disabled
   attribute_condition = var.workload_identity_pool_provider.attribute_condition
   attribute_mapping   = var.workload_identity_pool_provider.attribute_mapping
+  oidc {
+    issuer_uri = var.workload_identity_pool_provider.oidc.issuer_uri
+  }
 }
