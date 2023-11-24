@@ -55,7 +55,7 @@ resource "google_compute_target_https_proxy" "default" {
   provider = google-beta
   # Required arguments
   name             = var.subdomain
-  url_map          = google_compute_url_map.https.id
+  url_map          = google_compute_url_map.default.id
   ssl_certificates = [google_compute_managed_ssl_certificate.default.name]
   # Optional arguments
   # Nothing to do here...
@@ -88,7 +88,7 @@ resource "google_compute_target_http_proxy" "default" {
   # Required arguments
   name = var.subdomain
   url_map = var.redirect_http ? (
-    google_compute_url_map.http_redirect.self_link
+    google_compute_url_map.http_redirect[0].self_link
   ) : google_compute_url_map.default.self_link
   # Optional arguments
   # Nothing to do here...
