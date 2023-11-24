@@ -1,9 +1,3 @@
-locals {
-  full_domain = (
-    var.subdomain != "www"
-  ) ? "${var.subdomain}.${var.domain}" : var.domain
-}
-
 resource "google_compute_global_address" "default" {
   # Required arguments
   name = var.subdomain
@@ -17,7 +11,7 @@ resource "google_compute_managed_ssl_certificate" "default" {
   # Required arguments
   name = var.subdomain
   # Optional arguments
-  managed { domains = [local.full_domain] }
+  managed { domains = ["${var.subdomain}.${var.domain}"] }
 }
 
 resource "google_compute_url_map" "default" {
@@ -26,7 +20,7 @@ resource "google_compute_url_map" "default" {
   # Optional arguments
   default_service = google_compute_backend_bucket.public.id
   host_rule {
-    hosts        = [local.full_domain]
+    hosts        = ["${var.subdomain}.${var.domain}"]
     path_matcher = "default"
   }
   path_matcher {
