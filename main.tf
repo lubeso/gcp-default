@@ -19,8 +19,8 @@ module "terraform_cloud_oidc" {
     oidc = { issuer_uri = "https://app.terraform.io" }
   }
   service_account = {
-    roles   = ["owner"]
-    subject = "${var.terraform_workspace_id}"
+    roles             = ["owner"]
+    principal_subject = "${var.terraform_workspace_id}"
   }
   # Optional inputs
   # Nothing to do here...
