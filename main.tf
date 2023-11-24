@@ -25,4 +25,3 @@ module "terraform_cloud_oidc" {
   # Optional inputs
   # Nothing to do here...
 }
-

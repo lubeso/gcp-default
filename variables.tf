@@ -38,3 +38,9 @@ variable "github_repository_id" {
   type        = string
   description = "Unique identifier for the GitHub repository"
 }
+
+# Miscellaneous
+variable "domain" {
+  type        = string
+  description = "Domain name"
+}
