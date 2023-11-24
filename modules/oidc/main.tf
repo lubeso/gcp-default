@@ -1,4 +1,4 @@
-resource "random_id" "prefix" {
+resource "random_id" "suffix" {
   # Required arguments
   byte_length = 2
   # Optional arguments
