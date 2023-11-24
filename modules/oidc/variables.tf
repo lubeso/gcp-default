@@ -39,6 +39,8 @@ variable "workload_identity_pool_provider" {
 
 variable "service_account" {
   type = object({
+    account_id        = string
+    display_name      = optional(string)
     roles             = list(string)
     principal_subject = string
   })
