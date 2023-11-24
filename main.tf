@@ -42,13 +42,9 @@ module "github_actions_oidc" {
     display_name = "GitHub Actions"
   }
   workload_identity_pool_provider = {
-    attribute_condition = "(assertion.repository_owner_id == '${
-      var.github_owner_id
-      }' && assertion.repository_id == '${
-      var.github_repository_id
-    })'"
-    attribute_mapping = { "google.subject" = "assertion.ref" }
-    oidc              = { issuer_uri = "https://token.actions.githubusercontent.com" }
+    attribute_condition = "(assertion.repository_owner_id == '${var.github_owner_id}')"
+    attribute_mapping   = { "google.subject" = "assertion.ref" }
+    oidc                = { issuer_uri = "https://token.actions.githubusercontent.com" }
   }
   service_account = {
     account_id   = "github-actions"
