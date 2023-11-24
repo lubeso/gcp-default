@@ -19,7 +19,7 @@ module "service_account" {
 
 resource "google_service_account_iam_member" "workload_identity_user" {
   # Required arguments
-  service_account_id = module.github_actions_service_account.service_account.id
+  service_account_id = module.service_account.service_account.id
   member             = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.default.name}/subject/${var.service_account.principal_subject}"
   role               = "roles/iam.workloadIdentityUser"
   # Optional arguments
