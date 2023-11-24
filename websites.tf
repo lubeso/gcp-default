@@ -9,6 +9,4 @@ module "letterbox_website" {
   # Implementation variables
   domain    = var.domain
   subdomain = "letterbox"
-  # TODO: Redirect HTTP after SSL certificate finishes provisioning
-  redirect_http = false
 }
