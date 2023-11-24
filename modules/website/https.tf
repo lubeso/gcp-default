@@ -20,9 +20,9 @@ resource "google_compute_managed_ssl_certificate" "default" {
   managed { domains = [local.full_domain] }
 }
 
-resource "google_compute_url_map" "https" {
+resource "google_compute_url_map" "default" {
   # Required arguments
-  name = "${var.subdomain}-https"
+  name = var.subdomain
   # Optional arguments
   default_service = google_compute_backend_bucket.public.id
   host_rule {
@@ -62,6 +62,8 @@ resource "google_compute_target_https_proxy" "default" {
 }
 
 resource "google_compute_url_map" "http_redirect" {
+  # Meta-arguments
+  count = var.redirect_http ? 1 : 0
   # Required arguments
   name = "${var.subdomain}-http-redirect"
   # Optional arguments
@@ -71,9 +73,9 @@ resource "google_compute_url_map" "http_redirect" {
   }
 }
 
-resource "google_compute_global_forwarding_rule" "http_redirect" {
+resource "google_compute_global_forwarding_rule" "http" {
   # Required arguments
-  name   = "${var.subdomain}-http-redirect"
+  name   = "${var.subdomain}-http"
   target = google_compute_target_http_proxy.default.id
   # Optional arguments
   ip_address            = google_compute_global_address.default.id
@@ -84,8 +86,10 @@ resource "google_compute_global_forwarding_rule" "http_redirect" {
 
 resource "google_compute_target_http_proxy" "default" {
   # Required arguments
-  name    = var.subdomain
-  url_map = google_compute_url_map.http_redirect.self_link
+  name = var.subdomain
+  url_map = var.redirect_http ? (
+    google_compute_url_map.http_redirect.self_link
+  ) : google_compute_url_map.default.self_link
   # Optional arguments
   # Nothing to do here...
 }

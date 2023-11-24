@@ -25,3 +25,9 @@ variable "subdomain" {
   type        = string
   description = "Website subdomain name"
 }
+
+variable "redirect_http" {
+  type        = bool
+  description = "Whether to redirect HTTP traffic to HTTPS"
+  default     = true
+}
