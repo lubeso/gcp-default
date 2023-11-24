@@ -18,7 +18,7 @@ resource "google_project_iam_member" "default" {
 
 resource "google_service_account_iam_member" "workload_identity_user" {
   # Required arguments
-  service_account_id = google_service_account.default.account_id
+  service_account_id = google_service_account.default.id
   member             = "principal://iam.googleapis.com/${google_iam_workload_identity_pool.default.name}/subject/${var.service_account.principal_subject}"
   role               = "roles/iam.workloadIdentityUser"
   # Optional arguments
