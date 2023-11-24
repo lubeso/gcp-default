@@ -1,5 +1,17 @@
 {
   "editor.defaultFormatter": "EditorConfig.EditorConfig",
   "editor.formatOnSave": true,
-  "[terraform][terraform-vars]": {"editor.defaultFormatter": "hashicorp.terraform"}
+  "[terraform][terraform-vars]": {"editor.defaultFormatter": "hashicorp.terraform"},
+  "[yaml]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.autoIndent": "keep",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    }
+  }
 }
