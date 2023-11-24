@@ -1,3 +1,14 @@
+# Terraform Cloud configuration
+variable "terraform_organization_id" {
+  type        = string
+  description = "Terraform Cloud organization ID"
+}
+
+variable "terraform_workspace_id" {
+  type        = string
+  description = "Terraform Cloud default workspace ID"
+}
+
 # Google Cloud Provider configuration
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started
 variable "project" {
