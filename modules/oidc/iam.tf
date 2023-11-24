@@ -5,8 +5,9 @@ module "service_account" {
   # Required inputs
   project_id = var.project
   # Optional inputs
-  names        = [random_id.default.hex]
-  display_name = google_iam_workload_identity_pool.default.display_name
+  prefix       = random_id.prefix.hex
+  names        = [var.workload_identity_pool.id]
+  display_name = var.workload_identity_pool.display_name
   project_roles = [
     for role in distinct(
       concat(var.service_account.roles, [
