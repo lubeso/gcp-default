@@ -1,6 +1,6 @@
 resource "google_iam_workload_identity_pool" "default" {
   # Required arguments
-  workload_identity_pool_id = random_id.default.hex
+  workload_identity_pool_id = "${random_id.prefix.hex}-${var.workload_identity_pool.id}"
   # Optional argumnets
   display_name = var.workload_identity_pool.display_name
   disabled     = var.workload_identity_pool.disabled
