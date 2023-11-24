@@ -1,6 +1,6 @@
-resource "random_id" "default" {
+resource "random_id" "prefix" {
   # Required arguments
   byte_length = 2
   # Optional arguments
-  prefix = "${var.workload_identity_pool.id}-"
+  # Nothing to do here...
 }
