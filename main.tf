@@ -59,7 +59,7 @@ module "github_actions_oidc" {
       "run.admin",
       "storage.admin",
     ],
-    subject = "refs/heads/main"
+    principal_subject = "refs/heads/main"
   }
   # Optional inputs
   # Nothing to do here...
