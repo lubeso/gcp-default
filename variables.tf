@@ -27,3 +27,14 @@ variable "zone" {
   description = "Default location for zonal resources"
   default     = "us-east4-c"
 }
+
+# GitHub configuration
+variable "github_owner_id" {
+  type        = string
+  description = "Unique identifier for the GitHub Organization"
+}
+
+variable "github_repository_id" {
+  type        = string
+  description = "Unique identifier for the GitHub repository"
+}
