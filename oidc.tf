@@ -42,7 +42,7 @@ module "github_actions_oidc" {
     display_name = "GitHub Actions"
   }
   workload_identity_pool_provider = {
-    attribute_condition = "(assertion.ref == 'ref/heads/main' || assertion.ref.startsWith('refs/tags/'))"
+    attribute_condition = "(assertion.ref == 'refs/heads/main' || assertion.ref.startsWith('refs/tags/'))"
     attribute_mapping   = { "google.subject" = "assertion.repository_owner_id" }
     oidc                = { issuer_uri = "https://token.actions.githubusercontent.com" }
   }
