@@ -42,8 +42,8 @@ module "github_actions_oidc" {
     display_name = "GitHub Actions"
   }
   workload_identity_pool_provider = {
-    attribute_condition = "(assertion.repository_owner_id == '${var.github_owner_id}')"
-    attribute_mapping   = { "google.subject" = "assertion.ref" }
+    attribute_condition = "(assertion.ref == 'ref/heads/main' || assertion.ref.startsWith('refs/tags/'))"
+    attribute_mapping   = { "google.subject" = "assertion.repository_owner_id" }
     oidc                = { issuer_uri = "https://token.actions.githubusercontent.com" }
   }
   service_account = {
@@ -55,7 +55,7 @@ module "github_actions_oidc" {
       "run.admin",
       "storage.admin",
     ],
-    principal_subject = "refs/heads/main"
+    principal_subject = var.github_owner_id
   }
   # Optional inputs
   # Nothing to do here...
