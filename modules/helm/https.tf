@@ -18,15 +18,25 @@ resource "google_compute_url_map" "helm" {
   # Required arguments
   name = "helm"
   # Optional arguments
+  default_service = google_compute_backend_bucket.charts.id
   host_rule {
     hosts        = ["helm.${var.domain}"]
     path_matcher = "helm"
   }
   path_matcher {
-    name = "helm"
+    name            = "helm"
+    default_service = google_compute_backend_bucket.charts.id
     # Charts
-    path_rule {
-      paths   = ["/charts/*"]
+    route_rules {
+      priority = 100
+      match_rules {
+        prefix_match = "/charts/"
+      }
+      route_action {
+        url_rewrite {
+          path_prefix_rewrite = "/"
+        }
+      }
       service = google_compute_backend_bucket.charts.id
     }
   }
