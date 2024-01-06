@@ -26,8 +26,17 @@ resource "google_compute_url_map" "helm" {
   path_matcher {
     name            = "helm"
     default_service = google_compute_backend_bucket.charts.id
-    path_rule {
-      paths   = ["/charts"]
+    # Charts
+    route_rules {
+      priority = 100
+      match_rules {
+        prefix_match = "/charts"
+      }
+      route_action {
+        url_rewrite {
+          path_prefix_rewrite = ""
+        }
+      }
       service = google_compute_backend_bucket.charts.id
     }
   }
