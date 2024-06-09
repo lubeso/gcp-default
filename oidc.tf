@@ -22,7 +22,7 @@ module "terraform_cloud_oidc" {
     account_id        = "terraform-cloud"
     display_name      = "Terraform Cloud"
     roles             = ["owner"]
-    principal_subject = "${var.terraform_workspace_id}"
+    principal_subject = "${var.terraform_organization_id}"
   }
   # Optional inputs
   # Nothing to do here...
