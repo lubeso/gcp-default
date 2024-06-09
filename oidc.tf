@@ -14,7 +14,7 @@ module "terraform_cloud_oidc" {
   workload_identity_pool_provider = {
     attribute_condition = "(assertion.terraform_organization_id == '${var.terraform_organization_id}')"
     attribute_mapping = {
-      "google.subject" = "assertion.terraform_workspace_id"
+      "google.subject" = "assertion.terraform_organization_id"
     }
     oidc = { issuer_uri = "https://app.terraform.io" }
   }
